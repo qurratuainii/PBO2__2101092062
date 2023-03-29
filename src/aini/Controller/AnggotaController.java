@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,12 +42,26 @@ public class AnggotaController {
     public void bersihForm(){
         formAnggota.getTxtKodeAnggota().setText("");
         formAnggota.getTxtNamaAnggota().setText("");   
+        formAnggota.getTxtAlamat().setText("");
     }
     
     public void isiCboJenisKelamin(){
         formAnggota.getCboJeniskelamin().removeAllItems();
         formAnggota.getCboJeniskelamin().addItem("L");
         formAnggota.getCboJeniskelamin().addItem("P");
-        
+    }
+    
+    public void insert(){
+        try {
+            anggota = new Anggota();
+            anggota.setKodeanggota(formAnggota.getTxtKodeAnggota().getText());
+            anggota.setNamaanggota(formAnggota.getTxtNamaAnggota().getText());
+            anggota.setAlamat(formAnggota.getTxtAlamat().getText());
+            anggota.setJeniskelamin(formAnggota.getCboJeniskelamin().getSelectedItem().toString());
+            anggotaDao.insert(con, anggota);
+            JOptionPane.showMessageDialog(formAnggota, "Entri OK");
+        } catch (Exception ex) {
+            Logger.getLogger(AnggotaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
