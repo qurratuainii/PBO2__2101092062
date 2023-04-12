@@ -21,18 +21,15 @@ public class PBO2_2101092062 {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
+
+    public static void main(String[] args) throws SQLException {
         try {
-            Koneksi koneksi = new Koneksi ();
+             Koneksi koneksi = new Koneksi ();
             Connection con = koneksi.getKoneksi();
-            JOptionPane.showMessageDialog(null,"koneksi OK");
-       
+            JOptionPane.showMessageDialog(null, "Koneksi Ok");
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null,"  Eroor :" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error : " + ex.getMessage());
             Logger.getLogger(PBO2_2101092062.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-     
-    
 }
