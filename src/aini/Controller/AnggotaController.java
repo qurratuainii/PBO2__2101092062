@@ -114,13 +114,13 @@ public class AnggotaController {
                 Object[] row = {
                     anggota1.getKodeanggota(),
                     anggota1.getNamaanggota(),
+                    anggota1.getAlamat(),
                     anggota1.getJeniskelamin()
                 };
                 tabel.addRow(row);
             }
         } catch (Exception ex) {
             Logger.getLogger(AnggotaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        }   
     }
 }
