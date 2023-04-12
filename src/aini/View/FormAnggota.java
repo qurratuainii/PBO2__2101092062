@@ -5,6 +5,7 @@
  */
 package aini.View;
 
+import aini.Controller.AnggotaController;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -18,8 +19,13 @@ public class FormAnggota extends javax.swing.JFrame {
     /**
      * Creates new form FormAnggota
      */
+    AnggotaController controller;
     public FormAnggota() {
         initComponents();
+        controller = new AnggotaController(this);
+        controller.bersihForm();
+        controller.tampil();
+   
     }
 
     public JComboBox<String> getCboJeniskelamin() {
@@ -53,6 +59,7 @@ public class FormAnggota extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         txtKodeAnggota = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -198,7 +205,8 @@ public class FormAnggota extends javax.swing.JFrame {
                 .addGap(287, 287, 287))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(556, 729));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtKodeAnggotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKodeAnggotaActionPerformed
@@ -257,6 +265,7 @@ public class FormAnggota extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tblAnggota;
     private javax.swing.JTextField txtAlamat;
     private javax.swing.JTextField txtKodeAnggota;
