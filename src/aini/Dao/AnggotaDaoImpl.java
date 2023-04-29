@@ -20,13 +20,12 @@ import java.util.List;
 public class AnggotaDaoImpl implements AnggotaDao{
 
     public void insert(Connection con, Anggota anggota) throws Exception{
-        Koneksi k = new Koneksi();
         String sql = "insert into anggota values(?,?,?,?)";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, anggota.getKodeanggota());
         ps.setString(2, anggota.getNamaanggota());
-        ps.setString(3, anggota.getJeniskelamin());
-        ps.setString(4, anggota.getAlamat());
+        ps.setString(3, anggota.getAlamat());
+        ps.setString(4, anggota.getJeniskelamin());
         ps.executeUpdate();
     }
 
@@ -37,8 +36,8 @@ public class AnggotaDaoImpl implements AnggotaDao{
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, anggota.getKodeanggota());
         ps.setString(2, anggota.getNamaanggota());
-        ps.setString(3, anggota.getJeniskelamin());
-        ps.setString(4, anggota.getAlamat());
+        ps.setString(3, anggota.getAlamat());
+        ps.setString(4, anggota.getJeniskelamin());
         ps.executeUpdate();
     }
 
