@@ -31,7 +31,7 @@ public class AnggotaController {
     
     public AnggotaController(FormAnggota formAnggota){
         try {
-            this.formAnggota = new FormAnggota();
+            this.formAnggota = formAnggota;
             anggotaDao = new AnggotaDaoImpl();
             con = new Koneksi().getKoneksi();
         } catch (ClassNotFoundException ex) {
