@@ -83,7 +83,7 @@ public class AnggotaController {
     public void delete(){
         try {
             anggotaDao.delete(con, anggota);
-            JOptionPane.showMessageDialog(formAnggota, "Delete Oj");
+            JOptionPane.showMessageDialog(formAnggota, "Delete Ok");
         } catch (Exception ex) {
             Logger.getLogger(AnggotaController.class.getName()).log(Level.SEVERE, null, ex);
         }
