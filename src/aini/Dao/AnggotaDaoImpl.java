@@ -32,12 +32,12 @@ public class AnggotaDaoImpl implements AnggotaDao{
     @Override
     public void update(Connection con, Anggota anggota) throws Exception {
         String sql = 
-                "update anggota set namaanggota=?, alamat=?," + "jeniskelamin=? where kodeanggota";
+                "update anggota set namaanggota=?, alamat=?, jeniskelamin=? where kodeanggota=?";
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setString(1, anggota.getKodeanggota());
-        ps.setString(2, anggota.getNamaanggota());
-        ps.setString(3, anggota.getAlamat());
-        ps.setString(4, anggota.getJeniskelamin());
+        ps.setString(1, anggota.getNamaanggota());
+        ps.setString(2, anggota.getAlamat());
+        ps.setString(3, anggota.getJeniskelamin());
+        ps.setString(4, anggota.getKodeanggota());
         ps.executeUpdate();
     }
 
@@ -51,7 +51,7 @@ public class AnggotaDaoImpl implements AnggotaDao{
 
     @Override
     public Anggota getAnggota(Connection con, String kode) throws Exception {
-        String sql = "select * from anggota" + "where kodeanggota = ?";
+        String sql = "select * from anggota where kodeanggota = ?";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, kode);
         ResultSet rs = ps.executeQuery();
@@ -60,8 +60,8 @@ public class AnggotaDaoImpl implements AnggotaDao{
             anggota = new Anggota();
             anggota.setKodeanggota(rs.getString(1));
             anggota.setNamaanggota(rs.getString(2));
-            anggota.setJeniskelamin(rs.getString(3));
-            anggota.setAlamat(rs.getString(4));
+            anggota.setAlamat(rs.getString(3));
+            anggota.setJeniskelamin(rs.getString(4));
         }
         return anggota;
     }
@@ -83,6 +83,4 @@ public class AnggotaDaoImpl implements AnggotaDao{
         }
         return list;
     }
-
-    
 }
