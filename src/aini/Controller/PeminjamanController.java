@@ -87,11 +87,10 @@ public class PeminjamanController {
     public void cari(){
         try {
             String kode = formPeminjaman.getTxtKodeAnggota().getText();
-            String kode1 = formPeminjaman.getTxtKodeBuku().getText();
-            String kode2 = formPeminjaman.getTxtTglPinjam().getText();
-            peminjaman = peminjamanDao.getPeminjaman(con, kode);
-            peminjaman = peminjamanDao.getPeminjaman(con, kode1);
-            peminjaman = peminjamanDao.getPeminjaman(con, kode2);
+            String kodebuku = formPeminjaman.getTxtKodeBuku().getText();
+            String kodetgl = formPeminjaman.getTxtTglPinjam().getText();
+            peminjaman = peminjamanDao.getPeminjaman(con, kode, kodebuku, kodetgl);
+
             if(peminjaman != null){
                 formPeminjaman.getTxtTglKembali().setText(peminjaman.getTglkembali());
             }else {
