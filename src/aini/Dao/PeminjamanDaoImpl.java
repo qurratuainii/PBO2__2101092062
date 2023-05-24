@@ -30,7 +30,7 @@ public class PeminjamanDaoImpl implements PeminjamanDao{
     @Override
     public void update(Connection con, Peminjaman peminjaman) throws Exception {
         String sql = 
-                "update peminjaman set tglkembali=?, kodeanggota=?, kodebuku=? where tglpinjam=?";
+                "update peminjaman set tglkembali=? where kodeanggota=? and kodebuku=? and tglpinjam=?";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, peminjaman.getTglkembali());
         ps.setString(2, peminjaman.getKodeanggota());
@@ -41,17 +41,21 @@ public class PeminjamanDaoImpl implements PeminjamanDao{
 
     @Override
     public void delete(Connection con, Peminjaman peminjaman) throws Exception {
-        String sql = "delete from peminjaman " + "where tglpinjam = ?";
+        String sql = "delete from peminjaman " + "where kodeanggota=? and kodebuku=? and tglpinjam=?";
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setString(1, peminjaman.getTglpinjam());
+        ps.setString(1, peminjaman.getKodeanggota());
+        ps.setString(2, peminjaman.getKodebuku());
+        ps.setString(3, peminjaman.getTglpinjam());
         ps.executeUpdate();
     }
 
     @Override
-    public Peminjaman getPeminjaman(Connection con, String kode) throws Exception {
-        String sql = "select * from peminjaman where tglpinjam = ?";
+    public Peminjaman getPeminjaman(Connection con, String kode, String kodebuku, String kodetgl) throws Exception {
+        String sql = "select * from peminjaman where kodeanggota=? and kodebuku=? and tglpinjam=?";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, kode);
+        ps.setString(2, kodebuku);
+        ps.setString(3, kodetgl);
         ResultSet rs = ps.executeQuery();
         Peminjaman peminjaman = null;
         if (rs.next()){
