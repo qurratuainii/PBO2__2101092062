@@ -14,12 +14,11 @@ public class Peminjaman {
     private String kodebuku;
     private String tglpinjam;
     private String tglkembali;
-    
-    public Peminjaman(){
-        
+
+    public Peminjaman() {
     }
-    
-    public Peminjaman(String kodeanggota, String kodebuku, String tglpinjam, String tglkembali){
+
+    public Peminjaman(String kodeanggota, String kodebuku, String tglpinjam, String tglkembali) {
         this.kodeanggota = kodeanggota;
         this.kodebuku = kodebuku;
         this.tglpinjam = tglpinjam;
@@ -57,6 +56,4 @@ public class Peminjaman {
     public void setTglkembali(String tglkembali) {
         this.tglkembali = tglkembali;
     }
-    
-    
 }
