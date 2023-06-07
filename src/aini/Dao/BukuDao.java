@@ -18,5 +18,5 @@ public interface BukuDao {
     public void update(Connection con, Buku buku) throws Exception;
     public void delete(Connection con, Buku buku) throws Exception;
     public Buku getBuku(Connection con, String kode) throws Exception;
-    public List<Buku> getAllAnggota(Connection con) throws Exception;
+    public List<Buku> getAllBuku(Connection con) throws Exception;
 }
