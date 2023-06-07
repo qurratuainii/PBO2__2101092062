@@ -17,6 +17,8 @@ import java.util.List;
  * @author USER
  */
 public class BukuDaoImpl implements BukuDao{
+    
+    @Override
     public void insert(Connection con, Buku buku) throws Exception{
         String sql = "insert into buku values(?,?,?,?)";
         PreparedStatement ps = con.prepareStatement(sql);
@@ -65,7 +67,7 @@ public class BukuDaoImpl implements BukuDao{
     }
 
     @Override
-    public List<Buku> getAllAnggota(Connection con) throws Exception {
+    public List<Buku> getAllBuku(Connection con) throws Exception {
         String sql = "select * from buku";
         PreparedStatement ps = con.prepareCall(sql);
         ResultSet rs = ps.executeQuery();
