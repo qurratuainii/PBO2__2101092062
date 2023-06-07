@@ -39,8 +39,8 @@
               </Group>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="txtKodeAnggota" pref="246" max="32767" attributes="0"/>
-                  <Component id="txtNamaAnggota" max="32767" attributes="0"/>
+                  <Component id="txtKodeanggota" pref="246" max="32767" attributes="0"/>
+                  <Component id="txtNamaanggota" max="32767" attributes="0"/>
                   <Component id="txtAlamat" max="32767" attributes="0"/>
                   <Component id="cboJeniskelamin" alignment="0" max="32767" attributes="0"/>
               </Group>
@@ -77,13 +77,13 @@
               <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtKodeAnggota" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtKodeanggota" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnSearch" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtNamaAnggota" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtNamaanggota" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -116,12 +116,12 @@
         <Property name="text" type="java.lang.String" value="Kode Anggota"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtKodeAnggota">
+    <Component class="javax.swing.JTextField" name="txtKodeanggota">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField2"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtKodeAnggotaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtKodeanggotaActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -139,7 +139,7 @@
         <Property name="text" type="java.lang.String" value="Jenis Kelamin"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtNamaAnggota">
+    <Component class="javax.swing.JTextField" name="txtNamaanggota">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
@@ -202,6 +202,9 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblAnggotaMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
