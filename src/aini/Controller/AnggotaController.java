@@ -42,8 +42,8 @@ public class AnggotaController {
     }
     
     public void bersihForm(){
-        formAnggota.getTxtKodeAnggota().setText("");
-        formAnggota.getTxtNamaAnggota().setText("");   
+        formAnggota.getTxtKodeanggota().setText("");
+        formAnggota.getTxtNamaanggota().setText("");   
         formAnggota.getTxtAlamat().setText("");
     }
     
@@ -56,8 +56,8 @@ public class AnggotaController {
     public void insert(){
         try {
             anggota = new Anggota();
-            anggota.setKodeanggota(formAnggota.getTxtKodeAnggota().getText());
-            anggota.setNamaanggota(formAnggota.getTxtNamaAnggota().getText());
+            anggota.setKodeanggota(formAnggota.getTxtKodeanggota().getText());
+            anggota.setNamaanggota(formAnggota.getTxtNamaanggota().getText());
             anggota.setAlamat(formAnggota.getTxtAlamat().getText());
             anggota.setJeniskelamin(formAnggota.getCboJeniskelamin().getSelectedItem().toString());
             anggotaDao.insert(con, anggota);
@@ -69,8 +69,8 @@ public class AnggotaController {
     
     public void update(){
         try {
-            anggota.setKodeanggota(formAnggota.getTxtKodeAnggota().getText());
-            anggota.setNamaanggota(formAnggota.getTxtNamaAnggota().getText());
+            anggota.setKodeanggota(formAnggota.getTxtKodeanggota().getText());
+            anggota.setNamaanggota(formAnggota.getTxtNamaanggota().getText());
             anggota.setAlamat(formAnggota.getTxtAlamat().getText());
             anggota.setJeniskelamin(formAnggota.getCboJeniskelamin().getSelectedItem().toString());
             anggotaDao.update(con, anggota);
@@ -91,10 +91,10 @@ public class AnggotaController {
     
     public void cari(){
         try {
-            String kode = formAnggota.getTxtKodeAnggota().getText();
+            String kode = formAnggota.getTxtKodeanggota().getText();
             anggota = anggotaDao.getAnggota(con, kode);
             if(anggota != null){
-                formAnggota.getTxtNamaAnggota().setText(anggota.getNamaanggota());
+                formAnggota.getTxtNamaanggota().setText(anggota.getNamaanggota());
                 formAnggota.getTxtAlamat().setText(anggota.getAlamat());
                 formAnggota.getCboJeniskelamin().setSelectedItem(anggota.getJeniskelamin());
             }else {
@@ -104,6 +104,22 @@ public class AnggotaController {
             Logger.getLogger(AnggotaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void tabelKlik(){
+        try {
+            String kode = formAnggota.getTblAnggota()
+                    .getValueAt(formAnggota.getTblAnggota().getSelectedRow(),0)
+                    .toString();
+            anggota = anggotaDao.getAnggota(con, kode);
+            formAnggota.getTxtKodeanggota().setText(anggota.getKodeanggota());
+            formAnggota.getTxtNamaanggota().setText(anggota.getNamaanggota());
+            formAnggota.getTxtAlamat().setText(anggota.getAlamat());
+            formAnggota.getCboJeniskelamin().setSelectedItem(anggota.getJeniskelamin());
+        } catch (Exception ex) {
+            Logger.getLogger(AnggotaController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
+    
     
     public void tampil(){
         try {
