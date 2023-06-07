@@ -104,7 +104,7 @@ public class BukuController {
         try {
             DefaultTableModel tabel = (DefaultTableModel) formBuku.getTblBuku().getModel();
             tabel.setRowCount(0);
-            List<Buku> list = bukuDao.getAllAnggota(con);
+            List<Buku> list = bukuDao.getAllBuku(con);
             for (Buku buku : list) {
                 Object[] row = {
                     buku.getKodebuku(),
