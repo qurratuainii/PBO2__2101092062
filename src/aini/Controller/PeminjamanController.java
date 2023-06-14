@@ -90,6 +90,30 @@ public class PeminjamanController {
         } 
     }
     
+    public void update(){
+        try {
+            peminjaman.setKodeanggota(formPeminjaman.getCboKodeanggota()
+                    .getSelectedItem().toString().split("-")[0]);
+            peminjaman.setKodebuku(formPeminjaman.getCboKodebuku().getSelectedItem().toString());
+            peminjaman.setTglpinjam(formPeminjaman.getTxtTglpinjam().getText());
+            peminjaman.setTglkembali(formPeminjaman.getTxtTglkembali().getText());
+            peminjamanDao.update(con, peminjaman);
+            JOptionPane.showMessageDialog(formPeminjaman, "Update Data Ok");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(formPeminjaman, ex.getMessage());
+            Logger.getLogger(PeminjamanController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
+    
+    public void delete(){
+        try {
+            peminjamanDao.delete(con, peminjaman);
+            JOptionPane.showMessageDialog(formPeminjaman, "Delete Ok");
+        } catch (Exception ex) {
+            Logger.getLogger(PeminjamanController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void getPeminjaman(){
         try {
             String kodeanggota = formPeminjaman.getTblPeminjaman()
