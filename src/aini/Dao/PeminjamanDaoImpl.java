@@ -31,8 +31,8 @@ public class PeminjamanDaoImpl implements PeminjamanDao{
 
     @Override
     public void update(Connection con, Peminjaman peminjaman) throws Exception {
-        String sql = "update peminjaman set tglkembali=? "
-                + "where kodeanggota=? and kodebuku=? and tglpinjam=?";
+        String sql = "update peminjaman set tglkembali = ? "
+                + "where kodeanggota = ? and kodebuku = ? and tglpinjam = ?";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, peminjaman.getTglkembali());
         ps.setString(2, peminjaman.getKodeanggota());
@@ -44,7 +44,7 @@ public class PeminjamanDaoImpl implements PeminjamanDao{
     @Override
     public void delete(Connection con, Peminjaman peminjaman) throws Exception {
         String sql = "delete from peminjaman "
-                + "where kodeanggota=? and kodebuku=? and tglpinjam=?";
+                + "where kodeanggota = ? and kodebuku = ? and tglpinjam = ?";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, peminjaman.getKodeanggota());
         ps.setString(2, peminjaman.getKodebuku());
