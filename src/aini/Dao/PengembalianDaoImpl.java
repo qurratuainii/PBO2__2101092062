@@ -74,6 +74,8 @@ public class PengembalianDaoImpl implements PengembalianDao {
             pengembalian.setKodebuku(rs.getString(2));
             pengembalian.setTglpinjam(rs.getString(3));
             pengembalian.setTgldikembalikan(rs.getString(4));
+            pengembalian.setTerlambat(rs.getInt(5));
+            pengembalian.setDenda(rs.getDouble(6));
         }
         return pengembalian;
     }
