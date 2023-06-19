@@ -25,9 +25,9 @@ public class PenjualanDaoImpl implements PenjualanDao{
         ps.setString(1, penjualan.getKodepesanan());
         ps.setString(2, penjualan.getTanggal());
         ps.setString(3, penjualan.getNamapemesan());
-        ps.setString(4, penjualan.getTotal());
-        ps.setString(5, penjualan.getOngkir());
-        ps.setString(6, penjualan.getDiskon());
+        ps.setInt(4, penjualan.getTotal());
+        ps.setInt(5, penjualan.getOngkir());
+        ps.setInt(6, penjualan.getDiskon());
         ps.executeUpdate();
     }
 
@@ -38,9 +38,9 @@ public class PenjualanDaoImpl implements PenjualanDao{
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, penjualan.getTanggal());
         ps.setString(2, penjualan.getNamapemesan());
-        ps.setString(3, penjualan.getTotal());
-        ps.setString(4, penjualan.getOngkir());
-        ps.setString(5, penjualan.getDiskon());
+        ps.setInt(3, penjualan.getTotal());
+        ps.setInt(4, penjualan.getOngkir());
+        ps.setInt(5, penjualan.getDiskon());
         ps.setString(6, penjualan.getKodepesanan());
         ps.executeUpdate();
     }
@@ -65,9 +65,9 @@ public class PenjualanDaoImpl implements PenjualanDao{
             penjualan.setKodepesanan(rs.getString(1));
             penjualan.setTanggal(rs.getString(2));
             penjualan.setNamapemesan(rs.getString(3));
-            penjualan.setTotal(rs.getString(4));
-            penjualan.setOngkir(rs.getString(5));
-            penjualan.setDiskon(rs.getString(6));
+            penjualan.setTotal(rs.getInt(4));
+            penjualan.setOngkir(rs.getInt(5));
+            penjualan.setDiskon(rs.getInt(6));
         }
         return penjualan;
     }
@@ -84,9 +84,9 @@ public class PenjualanDaoImpl implements PenjualanDao{
             penjualan.setKodepesanan(rs.getString(1));
             penjualan.setTanggal(rs.getString(2));
             penjualan.setNamapemesan(rs.getString(3));
-            penjualan.setTotal(rs.getString(4));
-            penjualan.setOngkir(rs.getString(5));
-            penjualan.setDiskon(rs.getString(6));
+            penjualan.setTotal(rs.getInt(4));
+            penjualan.setOngkir(rs.getInt(5));
+            penjualan.setDiskon(rs.getInt(6));
             list.add(penjualan);
         }
         return list;
