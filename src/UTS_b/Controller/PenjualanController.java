@@ -57,9 +57,9 @@ public class PenjualanController {
             penjualan.setKodepesanan(formPenjualan.getTxtKodePesanan().getText());
             penjualan.setTanggal(formPenjualan.getTxtTanggal().getText());
             penjualan.setNamapemesan(formPenjualan.getTxtNamaPemesan().getText());
-            penjualan.setTotal(formPenjualan.getTxtTotalBayar().getText());
-            penjualan.setOngkir(formPenjualan.getTxtOngkirKirim().getText());
-            penjualan.setDiskon(formPenjualan.getTxtDiskon().getText());
+            penjualan.setTotal(formPenjualan.getTxtTotalBayar().getColumns());
+            penjualan.setOngkir(formPenjualan.getTxtOngkirKirim().getColumns());
+            penjualan.setDiskon(formPenjualan.getTxtDiskon().getColumns());
             penjualanDao.insert(con, penjualan);
             JOptionPane.showMessageDialog(formPenjualan, "Entri OK");
         } catch (Exception ex) {
@@ -72,9 +72,9 @@ public class PenjualanController {
             penjualan.setKodepesanan(formPenjualan.getTxtKodePesanan().getText());
             penjualan.setTanggal(formPenjualan.getTxtTanggal().getText());
             penjualan.setNamapemesan(formPenjualan.getTxtNamaPemesan().getText());
-           penjualan.setTotal(formPenjualan.getTxtTotalBayar().getText());
-           penjualan.setOngkir(formPenjualan.getTxtOngkirKirim().getText());
-           penjualan.setDiskon(formPenjualan.getTxtDiskon().getText());
+           penjualan.setTotal(formPenjualan.getTxtTotalBayar().getColumns());
+           penjualan.setOngkir(formPenjualan.getTxtOngkirKirim().getColumns());
+           penjualan.setDiskon(formPenjualan.getTxtDiskon().getColumns());
             penjualanDao.update(con, penjualan);
             JOptionPane.showMessageDialog(formPenjualan, "Update Ok");
         } catch (Exception ex) {
@@ -98,9 +98,9 @@ public class PenjualanController {
             if(penjualan != null){
                 formPenjualan.getTxtTanggal().setText(penjualan.getTanggal());
                 formPenjualan.getTxtNamaPemesan().setText(penjualan.getNamapemesan());
-               formPenjualan.getTxtTotalBayar().setText(penjualan.getTotal());
-               formPenjualan.getTxtOngkirKirim().setText(penjualan.getOngkir());
-               formPenjualan.getTxtDiskon().setText(penjualan.getDiskon());
+               formPenjualan.getTxtTotalBayar().setColumns(penjualan.getTotal());
+               formPenjualan.getTxtOngkirKirim().setColumns(penjualan.getOngkir());
+               formPenjualan.getTxtDiskon().setColumns(penjualan.getDiskon());
             }else {
                 JOptionPane.showMessageDialog(formPenjualan, "Data tidak ada");
             }
