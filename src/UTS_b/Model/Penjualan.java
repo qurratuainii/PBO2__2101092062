@@ -13,9 +13,9 @@ public class Penjualan {
     private String kodepesanan;
     private String tanggal;
     private String namapemesan;
-    private String total;
-    private String ongkir;
-    private String diskon;
+    private int total;
+    private int ongkir;
+    private int diskon;
     
     public Penjualan (){
         
@@ -25,6 +25,9 @@ public class Penjualan {
         this.kodepesanan = kodepesanan;
         this.tanggal = tanggal;
         this.namapemesan = namapemesan;
+    }
+    
+    public Penjualan(int total, int ongkir, int diskon){
         this.total = total;
         this.ongkir = ongkir;
         this.diskon = diskon;
@@ -54,27 +57,27 @@ public class Penjualan {
         this.namapemesan = namapemesan;
     }
 
-    public String getTotal() {
+    public int getTotal() {
         return total;
     }
 
-    public void setTotal(String total) {
+    public void setTotal(int total) {
         this.total = total;
     }
 
-    public String getOngkir() {
+    public int getOngkir() {
         return ongkir;
     }
 
-    public void setOngkir(String ongkir) {
+    public void setOngkir(int ongkir) {
         this.ongkir = ongkir;
     }
 
-    public String getDiskon() {
+    public int getDiskon() {
         return diskon;
     }
 
-    public void setDiskon(String diskon) {
+    public void setDiskon(int diskon) {
         this.diskon = diskon;
     }
     
