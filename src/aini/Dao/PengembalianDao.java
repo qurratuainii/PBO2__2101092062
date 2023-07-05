@@ -20,4 +20,5 @@ public interface PengembalianDao {
     public Pengembalian getPengembalian(Connection con, 
             String kodeanggota, String kodebuku, String tglpinjam) throws Exception;
     public List<Pengembalian> getAllPengembalian(Connection con) throws Exception;
+    int getSelisihTanggal(Connection con, String tgl, String tgl2) throws Exception;
 }
