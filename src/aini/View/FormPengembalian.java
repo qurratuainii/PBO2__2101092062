@@ -23,17 +23,10 @@ public class FormPengembalian extends javax.swing.JFrame {
     public FormPengembalian() {
         initComponents();
         controller = new PengembalianController(this);
-        controller.isiCombo();
         controller.clearForm();
+        controller.tampil();
     }
 
-    public JComboBox<String> getCboKodeanggota() {
-        return cboKodeanggota;
-    }
-
-    public JComboBox<String> getCboKodebuku() {
-        return cboKodebuku;
-    }
 
     public JTable getTblPengembalian() {
         return tblPengembalian;
@@ -51,13 +44,22 @@ public class FormPengembalian extends javax.swing.JFrame {
         return txtTglkembali;
     }
 
-    public JComboBox<String> getCboTglkembali() {
-        return cboTglkembali;
+    public JTextField getTxtKodeanggota() {
+        return txtKodeanggota;
     }
 
-    public JComboBox<String> getCboTglpinjam() {
-        return cboTglpinjam;
+    public JTextField getTxtKodebuku() {
+        return txtKodebuku;
     }
+
+    public JTextField getTxtTgldikembalikan() {
+        return txtTgldikembalikan;
+    }
+
+    public JTextField getTxtTglpinjam() {
+        return txtTglpinjam;
+    }
+
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,9 +75,7 @@ public class FormPengembalian extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        cboKodeanggota = new javax.swing.JComboBox<>();
-        cboKodebuku = new javax.swing.JComboBox<>();
-        txtTglkembali = new javax.swing.JTextField();
+        txtTgldikembalikan = new javax.swing.JTextField();
         txtTerlambat = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtDenda = new javax.swing.JTextField();
@@ -88,8 +88,10 @@ public class FormPengembalian extends javax.swing.JFrame {
         tblPengembalian = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         btnKembalikan = new javax.swing.JButton();
-        cboTglpinjam = new javax.swing.JComboBox<>();
-        cboTglkembali = new javax.swing.JComboBox<>();
+        txtTglpinjam = new javax.swing.JTextField();
+        txtKodebuku = new javax.swing.JTextField();
+        txtKodeanggota = new javax.swing.JTextField();
+        txtTglkembali = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,11 +105,7 @@ public class FormPengembalian extends javax.swing.JFrame {
 
         jLabel6.setText("Denda");
 
-        cboKodeanggota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cboKodebuku.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        txtTglkembali.setText("jTextField1");
+        txtTgldikembalikan.setText("jTextField1");
 
         txtTerlambat.setText("jTextField1");
 
@@ -130,15 +128,20 @@ public class FormPengembalian extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Kode Anggota", "Kode Buku", "Tanggal Pinjam", "Tanggal Kembali", "Title 5", "Title 6", "Title 7"
+                "Kode Anggota", "Nama Anggota", "Kode Buku", "Tgl Pinjam", "Tgl Kembali", "Tgl Dikembalikan", "Terlambat", "Denda"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, true, true
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblPengembalian.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPengembalianMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblPengembalian);
@@ -147,15 +150,22 @@ public class FormPengembalian extends javax.swing.JFrame {
             tblPengembalian.getColumnModel().getColumn(1).setResizable(false);
             tblPengembalian.getColumnModel().getColumn(2).setResizable(false);
             tblPengembalian.getColumnModel().getColumn(3).setResizable(false);
+            tblPengembalian.getColumnModel().getColumn(4).setResizable(false);
+            tblPengembalian.getColumnModel().getColumn(5).setResizable(false);
+            tblPengembalian.getColumnModel().getColumn(6).setResizable(false);
         }
 
         jLabel7.setText("Tanggal Kembali");
 
         btnKembalikan.setText("Kembalikan");
 
-        cboTglpinjam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        txtTglpinjam.setText("jTextField1");
 
-        cboTglkembali.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        txtKodebuku.setText("jTextField1");
+
+        txtKodeanggota.setText("jTextField1");
+
+        txtTglkembali.setText("jTextField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,10 +178,6 @@ public class FormPengembalian extends javax.swing.JFrame {
                         .addComponent(btnCancel)
                         .addGap(79, 79, 79)
                         .addComponent(btnExit))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(97, 97, 97)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -191,19 +197,23 @@ public class FormPengembalian extends javax.swing.JFrame {
                                 .addComponent(btnUpdate)
                                 .addGap(68, 68, 68)
                                 .addComponent(btnDelete)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                                 .addComponent(btnKembalikan))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(55, 55, 55)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtTglkembali, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cboKodebuku, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cboKodeanggota, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtTgldikembalikan, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtTerlambat, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
                                     .addComponent(txtDenda)
-                                    .addComponent(cboTglpinjam, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cboTglkembali, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addContainerGap(35, Short.MAX_VALUE))
+                                    .addComponent(txtTglpinjam, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtKodebuku, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtKodeanggota, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtTglkembali, javax.swing.GroupLayout.Alignment.LEADING))))))
+                .addContainerGap(329, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 904, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,23 +221,23 @@ public class FormPengembalian extends javax.swing.JFrame {
                 .addGap(74, 74, 74)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboKodeanggota, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtKodeanggota, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboKodebuku, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtKodebuku, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboTglpinjam, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTglpinjam, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboTglkembali, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTglkembali, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtTglkembali, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTgldikembalikan, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtTerlambat)
@@ -253,6 +263,11 @@ public class FormPengembalian extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tblPengembalianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPengembalianMouseClicked
+        // TODO add your handling code here:
+        controller.getPengembalian();
+    }//GEN-LAST:event_tblPengembalianMouseClicked
 
     /**
      * @param args the command line arguments
@@ -296,10 +311,6 @@ public class FormPengembalian extends javax.swing.JFrame {
     private javax.swing.JButton btnInsert;
     private javax.swing.JButton btnKembalikan;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox<String> cboKodeanggota;
-    private javax.swing.JComboBox<String> cboKodebuku;
-    private javax.swing.JComboBox<String> cboTglkembali;
-    private javax.swing.JComboBox<String> cboTglpinjam;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -310,7 +321,11 @@ public class FormPengembalian extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblPengembalian;
     private javax.swing.JTextField txtDenda;
+    private javax.swing.JTextField txtKodeanggota;
+    private javax.swing.JTextField txtKodebuku;
     private javax.swing.JTextField txtTerlambat;
+    private javax.swing.JTextField txtTgldikembalikan;
     private javax.swing.JTextField txtTglkembali;
+    private javax.swing.JTextField txtTglpinjam;
     // End of variables declaration//GEN-END:variables
 }
