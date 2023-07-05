@@ -57,100 +57,43 @@ public class PengembalianController {
     }
     
     public void clearForm(){
+        formPengembalian.getTxtKodeanggota().setText("");
+        formPengembalian.getTxtKodebuku().setText("");
+        formPengembalian.getTxtTglpinjam().setText("");
         formPengembalian.getTxtTglkembali().setText("");
+        formPengembalian.getTxtTgldikembalikan().setText("");
         formPengembalian.getTxtTerlambat().setText("");
         formPengembalian.getTxtDenda().setText("");
     }
     
-    public void isiCombo(){
+    public void getPengembalian(){
         try {
-            formPengembalian.getCboKodeanggota().removeAllItems();
-            formPengembalian.getCboKodebuku().removeAllItems();
-            formPengembalian.getCboTglpinjam().removeAllItems();
-            formPengembalian.getCboTglkembali().removeAllItems();
-            List<Anggota> anggotaList = anggotaDao.getAllAnggota(con);
-            List<Buku> bukuList = bukuDao.getAllBuku(con);
-            List<Peminjaman> peminjamanList = peminjamanDao.getAllPeminjaman(con);
-            for (Anggota anggota : anggotaList) {
-                formPengembalian.getCboKodeanggota()
-                        .addItem(anggota.getKodeanggota()+"-"+anggota.getNamaanggota());
-            }
-            for (Buku buku : bukuList) { 
-                formPengembalian.getCboKodebuku().addItem(buku.getKodebuku());
-            }
-            for (Peminjaman peminjaman : peminjamanList){
-                formPengembalian.getCboTglpinjam().addItem(peminjaman.getTglpinjam());
-                formPengembalian.getCboTglkembali().addItem(peminjaman.getTglkembali());
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(PeminjamanController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public void insert(){
-        try {
-            pengembalian = new Pengembalian();
-            pengembalian.setKodeanggota(formPengembalian.getCboKodeanggota()
-                    .getSelectedItem().toString().split("-")[0]);
-            pengembalian.setKodebuku(formPengembalian.getCboKodebuku().getSelectedItem().toString());
-            pengembalian.setTglpinjam(formPengembalian.getCboTglkembali().getSelectedItem().toString());
-            pengembalian.setTglkembali(formPengembalian.getCboTglkembali().getSelectedItem().toString());
-            
-            
-            pengembalianDao.insert(con, pengembalian);
-            JOptionPane.showMessageDialog(formPengembalian, "Entri Data Ok");
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(formPengembalian, ex.getMessage());
-            Logger.getLogger(PeminjamanController.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-    }
-    
-    public void update(){
-        try {
-            pengembalian.setKodeanggota(formPengembalian.getCboKodeanggota()
-                    .getSelectedItem().toString().split("-")[0]);
-            pengembalian.setKodebuku(formPengembalian.getCboKodebuku().getSelectedItem().toString());
-            pengembalian.setTglpinjam(formPengembalian.getCboTglpinjam().getSelectedItem().toString());
-            pengembalian.setTglkembali(formPengembalian.getCboTglkembali().getSelectedItem().toString());
-            
-            
-            pengembalianDao.update(con, pengembalian);
-            JOptionPane.showMessageDialog(formPengembalian, "Update Data Ok");
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(formPengembalian, ex.getMessage());
-            Logger.getLogger(PeminjamanController.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-    }
-    
-    public void delete(){
-        try {
-           pengembalianDao.delete(con, pengembalian);
-            JOptionPane.showMessageDialog(formPengembalian, "Delete Ok");
-        } catch (Exception ex) {
-            Logger.getLogger(PeminjamanController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public void getPeminjaman(){
-        try {
-            String kodeanggota = formPengembalian.getTblPengembalian()
-                    .getValueAt(formPengembalian.getTblPengembalian().getSelectedRow(), 0).toString();
+           String kodeAnggota = formPengembalian.getTblPengembalian()
+                    .getValueAt(formPengembalian.getTblPengembalian()
+                            .getSelectedRow(), 0).toString();
             String kodebuku = formPengembalian.getTblPengembalian()
-                    .getValueAt(formPengembalian.getTblPengembalian().getSelectedRow(), 1).toString();
+                    .getValueAt(formPengembalian.getTblPengembalian()
+                            .getSelectedRow(), 2).toString();
             String tglpinjam = formPengembalian.getTblPengembalian()
-                    .getValueAt(formPengembalian.getTblPengembalian().getSelectedRow(), 2).toString();
-            pengembalian = pengembalianDao.getPengembalian(con, kodeanggota, kodebuku, tglpinjam);
-            if(pengembalian!=null){
-                Anggota anggota = anggotaDao.getAnggota(con, pengembalian.getKodeanggota());
-                formPengembalian.getCboKodeanggota()
-                        .setSelectedItem(anggota.getKodeanggota()+"-"+anggota.getNamaanggota());
-                formPengembalian.getCboKodebuku().setSelectedItem(pengembalian.getKodebuku());
-                formPengembalian.getCboTglpinjam().setSelectedItem(pengembalian.getTglpinjam());
-                formPengembalian.getCboTglkembali().setSelectedItem(pengembalian.getTglkembali());
-               
-             }
-        } catch (Exception ex) {
-            Logger.getLogger(PeminjamanController.class.getName()).log(Level.SEVERE, null, ex);
+                    .getValueAt(formPengembalian.getTblPengembalian()
+                            .getSelectedRow(), 3).toString();
+            pengembalian = new Pengembalian();
+            Peminjaman peminjaman = peminjamanDao
+                    .getPeminjaman(con, kodeAnggota, kodebuku, tglpinjam);
+            int terlambat = pengembalianDao
+                    .selisihTanggal(con, pengembalian.getTgldikembalikan(),
+                            peminjaman.getTglkembali());
+            pengembalian.setTerlambat(terlambat);
+            double denda = pengembalian.getDenda();
+            formPengembalian.getTxtKodeanggota().setText(kodeAnggota);
+            formPengembalian.getTxtKodebuku().setText(kodebuku);
+            formPengembalian.getTxtTglpinjam().setText(tglpinjam);
+            formPengembalian.getTxtTglkembali().setText(peminjaman.getTglkembali()); 
+            formPengembalian.getTxtTgldikembalikan().setText(pengembalian.getTgldikembalikan());
+            formPengembalian.getTxtTerlambat().setText(terlambat+""); 
+            formPengembalian.getTxtDenda().setText(denda+"");
+       } catch (Exception ex) {
+            Logger.getLogger(PengembalianController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -159,14 +102,18 @@ public class PengembalianController {
             DefaultTableModel tabel = (DefaultTableModel) formPengembalian.getTblPengembalian().getModel();
             tabel.setRowCount(0);
             List<Pengembalian> list = pengembalianDao.getAllPengembalian(con);
-            for (Pengembalian peminjaman1 : list) { 
+            for (Pengembalian p : list) { 
+                Anggota anggota = anggotaDao.getAnggota(con, p.getKodeanggota());
+                Peminjaman pinjam = peminjamanDao.getPeminjaman(con, p.getKodeanggota(), p.getKodebuku(), p.getTglpinjam());
                 Object[] row = {
-                    peminjaman1.getKodeanggota(),
-                    peminjaman1.getKodebuku(),
-                    peminjaman1.getTglpinjam(),
-                    peminjaman1.getTglkembali(),
-                    peminjaman1.getTerlambat(),
-                    peminjaman1.getDenda()
+                    p.getKodeanggota(),
+                    anggota.getNamaanggota(),
+                    p.getKodebuku(),
+                    pinjam.getTglpinjam(),
+                    pinjam.getTglkembali(),
+                    p.getTgldikembalikan(),
+                    p.getTerlambat(),
+                    p.getDenda()
                 };
                 tabel.addRow(row);
             }
