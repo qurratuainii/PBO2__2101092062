@@ -16,6 +16,7 @@ public class Pengembalian {
     private String kodeanggota;
     private String kodebuku;
     private String tglpinjam;
+    private String tgldikembalikan;
     private String tglkembali;
     private int terlambat;
     private double denda;
@@ -24,10 +25,19 @@ public class Pengembalian {
         
     }
     
-    public Pengembalian(String kodeanggota, String kodebuku, String tglpinjam, String tglkembali, String terlambat, String denda){
+    public Pengembalian(String kodeanggota, String kodebuku, String tglpinjam, String tgldikembalikan, String tglkembali, String terlambat, String denda){
         this.kodeanggota = kodeanggota;
         this.kodebuku = kodebuku;
         this.tglpinjam = tglpinjam;
+        this.tgldikembalikan = tgldikembalikan;
+        this.tglkembali = tglkembali;
+    }
+
+    public String getTglkembali() {
+        return tglkembali;
+    }
+
+    public void setTglkembali(String tglkembali) {
         this.tglkembali = tglkembali;
     }
     
@@ -63,18 +73,19 @@ public class Pengembalian {
         this.tglpinjam = tglpinjam;
     }
 
-    public String getTglkembali() {
+    public String getTgldikembalikan() {
         SimpleDateFormat sekarang = new SimpleDateFormat("yyyy-MM-dd");
         Date tgl = new Date();
-        tglkembali = sekarang.format(tgl);
-        return tglkembali;
+        tgldikembalikan = sekarang.format(tgl);
+        return tgldikembalikan;
     }
 
-    public void setTglkembali(String tglkembali) {
-        this.tglkembali = tglkembali;
+    public void setTgldikembalikan(String tgldikembalikan) {
+        this.tgldikembalikan = tgldikembalikan;
     }
 
     public int getTerlambat() {
+    
         return terlambat;
     }
 
@@ -83,6 +94,7 @@ public class Pengembalian {
     }
 
     public double getDenda() {
+        denda = terlambat * 1000;
         return denda;
     }
 
