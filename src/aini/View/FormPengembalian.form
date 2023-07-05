@@ -32,11 +32,6 @@
                       <Component id="btnExit" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="710" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
@@ -58,25 +53,30 @@
                               <Component id="btnUpdate" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                               <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="69" max="32767" attributes="0"/>
                               <Component id="btnKembalikan" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="txtTglkembali" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="cboKodebuku" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="cboKodeanggota" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtTgldikembalikan" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txtTerlambat" pref="321" max="32767" attributes="0"/>
                                   <Component id="txtDenda" max="32767" attributes="0"/>
-                                  <Component id="cboTglpinjam" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="cboTglkembali" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="txtTglpinjam" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtKodebuku" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtKodeanggota" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtTglkembali" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="35" max="32767" attributes="0"/>
+              <EmptySpace pref="329" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="904" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -86,27 +86,27 @@
               <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                  <Component id="cboKodeanggota" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="txtKodeanggota" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                  <Component id="cboKodebuku" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="txtKodebuku" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                  <Component id="cboTglpinjam" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="txtTglpinjam" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel7" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                  <Component id="cboTglkembali" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="txtTglkembali" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jLabel4" max="32767" attributes="0"/>
-                  <Component id="txtTglkembali" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="txtTgldikembalikan" min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -163,37 +163,7 @@
         <Property name="text" type="java.lang.String" value="Denda"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cboKodeanggota">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="cboKodebuku">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtTglkembali">
+    <Component class="javax.swing.JTextField" name="txtTgldikembalikan">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
@@ -248,14 +218,15 @@
         <Component class="javax.swing.JTable" name="tblPengembalian">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="7" rowCount="0">
+              <Table columnCount="8" rowCount="0">
                 <Column editable="false" title="Kode Anggota" type="java.lang.Object"/>
+                <Column editable="false" title="Nama Anggota" type="java.lang.Object"/>
                 <Column editable="false" title="Kode Buku" type="java.lang.Object"/>
-                <Column editable="false" title="Tanggal Pinjam" type="java.lang.Object"/>
-                <Column editable="false" title="Tanggal Kembali" type="java.lang.Object"/>
-                <Column editable="true" title="Title 5" type="java.lang.Object"/>
-                <Column editable="true" title="Title 6" type="java.lang.Object"/>
-                <Column editable="true" title="Title 7" type="java.lang.Object"/>
+                <Column editable="false" title="Tgl Pinjam" type="java.lang.Object"/>
+                <Column editable="false" title="Tgl Kembali" type="java.lang.Object"/>
+                <Column editable="false" title="Tgl Dikembalikan" type="java.lang.Object"/>
+                <Column editable="false" title="Terlambat" type="java.lang.Object"/>
+                <Column editable="false" title="Denda" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -280,12 +251,17 @@
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>
                   <Renderer/>
@@ -301,6 +277,9 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblPengembalianMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -314,35 +293,25 @@
         <Property name="text" type="java.lang.String" value="Kembalikan"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cboTglpinjam">
+    <Component class="javax.swing.JTextField" name="txtTglpinjam">
       <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
-        </Property>
+        <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cboTglkembali">
+    <Component class="javax.swing.JTextField" name="txtKodebuku">
       <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
-        </Property>
+        <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtKodeanggota">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jTextField1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtTglkembali">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jTextField1"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
