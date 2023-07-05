@@ -10,12 +10,14 @@ import aini.Dao.AnggotaDaoImpl;
 import aini.Dao.BukuDao;
 import aini.Dao.BukuDaoImpl;
 import aini.Dao.Koneksi;
+import aini.Dao.PeminjamanDao;
 import aini.Dao.PengembalianDao;
 import aini.Dao.PeminjamanDaoImpl;
 import aini.Dao.PengembalianDaoImpl;
 import aini.Model.Anggota;
 import aini.Model.Buku;
 import aini.Model.Pengembalian;
+import aini.Model.Peminjaman;
 import aini.View.FormPengembalian;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -33,6 +35,7 @@ public class PengembalianController {
     FormPengembalian formPengembalian;
     Pengembalian pengembalian;
     PengembalianDao pengembalianDao;
+    PeminjamanDao peminjamanDao;
     AnggotaDao anggotaDao;
     BukuDao bukuDao;
     Connection con;
@@ -43,6 +46,7 @@ public class PengembalianController {
             pengembalianDao = new PengembalianDaoImpl();
             anggotaDao = new AnggotaDaoImpl();
             bukuDao = new BukuDaoImpl();
+            peminjamanDao = new PeminjamanDaoImpl();
             Koneksi k = new Koneksi();
             con = k.getKoneksi();
         } catch (ClassNotFoundException ex) {
@@ -53,7 +57,6 @@ public class PengembalianController {
     }
     
     public void clearForm(){
-        formPengembalian.getTxtTglpinjam().setText("");
         formPengembalian.getTxtTglkembali().setText("");
         formPengembalian.getTxtTerlambat().setText("");
         formPengembalian.getTxtDenda().setText("");
@@ -63,14 +66,21 @@ public class PengembalianController {
         try {
             formPengembalian.getCboKodeanggota().removeAllItems();
             formPengembalian.getCboKodebuku().removeAllItems();
+            formPengembalian.getCboTglpinjam().removeAllItems();
+            formPengembalian.getCboTglkembali().removeAllItems();
             List<Anggota> anggotaList = anggotaDao.getAllAnggota(con);
             List<Buku> bukuList = bukuDao.getAllBuku(con);
+            List<Peminjaman> peminjamanList = peminjamanDao.getAllPeminjaman(con);
             for (Anggota anggota : anggotaList) {
                 formPengembalian.getCboKodeanggota()
                         .addItem(anggota.getKodeanggota()+"-"+anggota.getNamaanggota());
             }
             for (Buku buku : bukuList) { 
                 formPengembalian.getCboKodebuku().addItem(buku.getKodebuku());
+            }
+            for (Peminjaman peminjaman : peminjamanList){
+                formPengembalian.getCboTglpinjam().addItem(peminjaman.getTglpinjam());
+                formPengembalian.getCboTglkembali().addItem(peminjaman.getTglkembali());
             }
         } catch (Exception ex) {
             Logger.getLogger(PeminjamanController.class.getName()).log(Level.SEVERE, null, ex);
@@ -83,8 +93,8 @@ public class PengembalianController {
             pengembalian.setKodeanggota(formPengembalian.getCboKodeanggota()
                     .getSelectedItem().toString().split("-")[0]);
             pengembalian.setKodebuku(formPengembalian.getCboKodebuku().getSelectedItem().toString());
-            pengembalian.setTglpinjam(formPengembalian.getTxtTglpinjam().getText());
-            pengembalian.setTgldikembalikan(formPengembalian.getTxtTglkembali().getText());
+            pengembalian.setTglpinjam(formPengembalian.getCboTglkembali().getSelectedItem().toString());
+            pengembalian.setTglkembali(formPengembalian.getCboTglkembali().getSelectedItem().toString());
             
             
             pengembalianDao.insert(con, pengembalian);
@@ -100,8 +110,8 @@ public class PengembalianController {
             pengembalian.setKodeanggota(formPengembalian.getCboKodeanggota()
                     .getSelectedItem().toString().split("-")[0]);
             pengembalian.setKodebuku(formPengembalian.getCboKodebuku().getSelectedItem().toString());
-            pengembalian.setTglpinjam(formPengembalian.getTxtTglpinjam().getText());
-            pengembalian.setTgldikembalikan(formPengembalian.getTxtTglkembali().getText());
+            pengembalian.setTglpinjam(formPengembalian.getCboTglpinjam().getSelectedItem().toString());
+            pengembalian.setTglkembali(formPengembalian.getCboTglkembali().getSelectedItem().toString());
             
             
             pengembalianDao.update(con, pengembalian);
@@ -135,8 +145,9 @@ public class PengembalianController {
                 formPengembalian.getCboKodeanggota()
                         .setSelectedItem(anggota.getKodeanggota()+"-"+anggota.getNamaanggota());
                 formPengembalian.getCboKodebuku().setSelectedItem(pengembalian.getKodebuku());
-                formPengembalian.getTxtTglpinjam().setText(pengembalian.getTglpinjam());
-                formPengembalian.getTxtTglkembali().setText(pengembalian.getTgldikembalikan());
+                formPengembalian.getCboTglpinjam().setSelectedItem(pengembalian.getTglpinjam());
+                formPengembalian.getCboTglkembali().setSelectedItem(pengembalian.getTglkembali());
+               
              }
         } catch (Exception ex) {
             Logger.getLogger(PeminjamanController.class.getName()).log(Level.SEVERE, null, ex);
@@ -153,7 +164,7 @@ public class PengembalianController {
                     peminjaman1.getKodeanggota(),
                     peminjaman1.getKodebuku(),
                     peminjaman1.getTglpinjam(),
-                    peminjaman1.getTgldikembalikan(),
+                    peminjaman1.getTglkembali(),
                     peminjaman1.getTerlambat(),
                     peminjaman1.getDenda()
                 };
