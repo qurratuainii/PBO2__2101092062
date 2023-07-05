@@ -5,6 +5,9 @@
  */
 package aini.Model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author USER
@@ -13,7 +16,7 @@ public class Pengembalian {
     private String kodeanggota;
     private String kodebuku;
     private String tglpinjam;
-    private String tgldikembalikan;
+    private String tglkembali;
     private int terlambat;
     private double denda;
     
@@ -21,11 +24,11 @@ public class Pengembalian {
         
     }
     
-    public Pengembalian(String kodeanggota, String kodebuku, String tglpinjam, String tgldikembalikan, String terlambat, String denda){
+    public Pengembalian(String kodeanggota, String kodebuku, String tglpinjam, String tglkembali, String terlambat, String denda){
         this.kodeanggota = kodeanggota;
         this.kodebuku = kodebuku;
         this.tglpinjam = tglpinjam;
-        this.tgldikembalikan = tgldikembalikan;
+        this.tglkembali = tglkembali;
     }
     
     public Pengembalian(int terlambat){
@@ -60,12 +63,15 @@ public class Pengembalian {
         this.tglpinjam = tglpinjam;
     }
 
-    public String getTgldikembalikan() {
-        return tgldikembalikan;
+    public String getTglkembali() {
+        SimpleDateFormat sekarang = new SimpleDateFormat("yyyy-MM-dd");
+        Date tgl = new Date();
+        tglkembali = sekarang.format(tgl);
+        return tglkembali;
     }
 
-    public void setTgldikembalikan(String tgldikembalikan) {
-        this.tgldikembalikan = tgldikembalikan;
+    public void setTglkembali(String tglkembali) {
+        this.tglkembali = tglkembali;
     }
 
     public int getTerlambat() {
