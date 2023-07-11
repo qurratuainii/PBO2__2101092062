@@ -85,7 +85,7 @@ public class Pengembalian {
     }
 
     public int getTerlambat() {
-    
+        //terlambat = 'tgldikembalikan' - 'tglkembali';
         return terlambat;
     }
 
