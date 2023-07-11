@@ -90,8 +90,8 @@ public class PengembalianController {
             formPengembalian.getTxtTglpinjam().setText(tglpinjam);
             formPengembalian.getTxtTglkembali().setText(peminjaman.getTglkembali()); 
             formPengembalian.getTxtTgldikembalikan().setText(pengembalian.getTgldikembalikan());
-            formPengembalian.getTxtTerlambat().setText(terlambat+""); 
-            formPengembalian.getTxtDenda().setText(denda+"");
+            formPengembalian.getTxtTerlambat().setText(terlambat+" "); 
+            formPengembalian.getTxtDenda().setText(denda+" ");
        } catch (Exception ex) {
             Logger.getLogger(PengembalianController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -105,6 +105,7 @@ public class PengembalianController {
             for (Pengembalian p : list) { 
                 Anggota anggota = anggotaDao.getAnggota(con, p.getKodeanggota());
                 Peminjaman pinjam = peminjamanDao.getPeminjaman(con, p.getKodeanggota(), p.getKodebuku(), p.getTglpinjam());
+                //Pengembalian pengembalian = pengembalianDao.getPengembalian(con, p.getKodeanggota(), p.getKodebuku(), p.getTglpinjam());
                 Object[] row = {
                     p.getKodeanggota(),
                     anggota.getNamaanggota(),
